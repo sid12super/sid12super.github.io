@@ -991,6 +991,293 @@
     }
 
     /* ═══════════════════════════════════════════
+       RESUME DOWNLOAD BUTTON (NAV)
+    ═══════════════════════════════════════════ */
+    .nav-resume {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      background: transparent;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-resume:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    .nav-resume svg {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.3s ease;
+    }
+
+    .nav-resume:hover svg {
+      transform: translateY(2px);
+    }
+
+    /* ═══════════════════════════════════════════
+       FEATURED PROJECTS — DEEP DIVE
+    ═══════════════════════════════════════════ */
+    .featured-projects {
+      padding: 0;
+    }
+
+    .featured-project {
+      border-top: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .featured-project-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 85vh;
+    }
+
+    /* Left panel — project info */
+    .fp-info {
+      padding: 80px 48px 80px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    .fp-index {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 3px;
+      color: var(--accent);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .fp-index::after {
+      content: '';
+      flex: 1;
+      max-width: 60px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .fp-title {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 4vw, 60px);
+      font-weight: 800;
+      letter-spacing: -2px;
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+
+    .fp-subtitle {
+      font-family: var(--font-body);
+      font-size: 16px;
+      color: var(--text-muted);
+      font-weight: 400;
+      font-style: italic;
+      margin-bottom: 32px;
+    }
+
+    .fp-description {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      font-weight: 300;
+      margin-bottom: 36px;
+      max-width: 520px;
+    }
+
+    .fp-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .fp-meta-item {
+      padding: 20px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .fp-meta-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .fp-meta-value {
+      font-size: 14px;
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .fp-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      padding: 14px 28px;
+      border: 1px solid var(--accent);
+      transition: all 0.3s ease;
+      width: fit-content;
+    }
+
+    .fp-link:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    .fp-link svg {
+      width: 16px;
+      height: 16px;
+      transition: transform 0.3s ease;
+    }
+
+    .fp-link:hover svg {
+      transform: translateX(4px);
+    }
+
+    /* Right panel — visual/highlights */
+    .fp-visual {
+      padding: 80px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--bg-secondary);
+      border-left: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .fp-visual::before {
+      content: '';
+      position: absolute;
+      top: -30%; right: -30%;
+      width: 60%; height: 60%;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    .fp-highlights-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+
+    .fp-highlight {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 24px;
+      align-items: start;
+      position: relative;
+    }
+
+    .fp-highlight:last-child {
+      border-bottom: none;
+    }
+
+    .fp-highlight-number {
+      font-family: var(--font-display);
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .fp-highlight-text {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      font-weight: 300;
+      padding-top: 4px;
+    }
+
+    .fp-highlight-text strong {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .fp-tech-stack {
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .fp-tech-stack-title {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .fp-tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .fp-tech-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      padding: 8px 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      transition: all 0.3s ease;
+    }
+
+    .fp-tech-tag:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Responsive for featured projects */
+    @media (max-width: 1024px) {
+      .featured-project-inner {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+      .fp-visual {
+        border-left: none;
+        border-top: 1px solid var(--border);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .fp-info { padding: 60px 24px; }
+      .fp-visual { padding: 60px 24px; }
+      .fp-meta { grid-template-columns: 1fr; }
+      .nav-resume span { display: none; }
+      .nav-resume { padding: 10px 14px; }
+    }
+
+    /* ═══════════════════════════════════════════
        SCROLL REVEAL
     ═══════════════════════════════════════════ */
     .reveal {
@@ -1063,6 +1350,10 @@
       <div class="dot"></div>
       Open to Work
     </div>
+    <a href="assets/Siddhant_Kasture_CV.pdf" download class="nav-resume">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      <span>Resume</span>
+    </a>
   </nav>
 
   <!-- HERO -->
@@ -1076,7 +1367,8 @@
       Building intelligent systems at the intersection of <strong>Machine Learning</strong>, <strong>NLP</strong>, and <strong>Cloud Engineering</strong>. Turning complex data into clarity.
     </p>
     <div class="hero-cta">
-      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#featured" class="btn btn-primary">View Projects</a>
+      <a href="assets/Siddhant_Kasture_CV.pdf" download class="btn">Download Resume ↓</a>
       <a href="#contact" class="btn">Get In Touch</a>
     </div>
     <div class="hero-scroll">
@@ -1223,11 +1515,270 @@
     </div>
   </section>
 
-  <!-- PROJECTS -->
+  <!-- FEATURED PROJECTS — DEEP DIVE -->
+  <section class="featured-projects" id="featured">
+    <div class="section" style="padding-bottom: 40px;">
+      <div class="section-header reveal">
+        <span class="section-number">03</span>
+        <h2 class="section-title">Featured Work</h2>
+        <div class="section-line"></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 01: Betting Edge -->
+    <div class="featured-project" id="project-betting-edge">
+      <div class="featured-project-inner">
+        <div class="fp-info reveal">
+          <div class="fp-index">01 — Featured</div>
+          <h3 class="fp-title">Betting<br/>Edge</h3>
+          <div class="fp-subtitle">Multi-Agent Decision Support System · Oct — Dec 2025</div>
+          <p class="fp-description">
+            A full-stack AI application combining a Multi-Agentic DQN-based predictive engine with user-facing interfaces for risk segmentation and responsible decision support. The system uses reinforcement learning alongside rule-based logic and safety checks to deliver personalized, ethical betting recommendations.
+          </p>
+          <div class="fp-meta">
+            <div class="fp-meta-item">
+              <div class="fp-meta-label">Role</div>
+              <div class="fp-meta-value">Lead ML Engineer</div>
+            </div>
+            <div class="fp-meta-item">
+              <div class="fp-meta-label">Type</div>
+              <div class="fp-meta-value">Academic · Team Project</div>
+            </div>
+            <div class="fp-meta-item">
+              <div class="fp-meta-label">Domain</div>
+              <div class="fp-meta-value">Sports Analytics · AI Ethics</div>
+            </div>
+            <div class="fp-meta-item">
+              <div class="fp-meta-label">Architecture</div>
+              <div class="fp-meta-value">Multi-Agent · DQN</div>
+            </div>
+          </div>
+          <a href="https://github.com/BettingApp-hcai/betting_edge" target="_blank" rel="noopener" class="fp-link">
+            View on GitHub
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+        <div class="fp-visual reveal">
+          <div class="fp-highlights-title">Key Results</div>
+          <div class="fp-highlight">
+            <div class="fp-highlight-number">15%</div>
+            <div class="fp-highlight-text"><strong>Positive expected value (+EV)</strong> opportunities identified across 1,000+ matches through a value-betting algorithm</div>
+          </div>
+          <div class="fp-highlight">
+            <div class="fp-highlight-number">8.5%</div>
+            <div class="fp-highlight-text"><strong>Theoretical ROI</strong> achieved in historical backtesting across diverse match datasets</div>
+          </div>
+          <div class="fp-highlight">
+            <div class="fp-highlight-number">∞</div>
+            <div class="fp-highlight-text"><strong>Ethical Nets & fairness constraints</strong> built into agent logic using fine-tuned LLM to ensure transparent, bias-mitigated decisions with responsible gambling guardrails</div>
+          </div>
+          <div class="fp-tech-stack">
+            <div class="fp-tech-stack-title">Tech Stack</div>
+            <div class="fp-tech-tags">
+              <span class="fp-tech-tag">Python</span>
+              <span class="fp-tech-tag">Deep Q-Networks</span>
+              <span class="fp-tech-tag">LangChain</span>
+              <span class="fp-tech-tag">Multi-Agent Systems</span>
+              <span class="fp-tech-tag">Streamlit</span>
+              <span class="fp-tech-tag">Fine-tuned LLM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 02: RAG-TechDocHelper -->
+    <div class="featured-project" id="project-rag">
+      <div class="featured-project-inner">
+        <div class="fp-info reveal">
+          <div class="fp-index">02 — Featured</div>
+          <h3 class="fp-title">RAG-Tech<br/>DocHelper</h3>
+          <div class="fp-subtitle">Retrieval-Augmented Generation System · Jun 2025</div>
+          <p class="fp-description">
+            An intelligent question-answering system that serves precise, AI-powered answers from complex technical documentation. Built with a full RAG pipeline — from document ingestion and vector embedding to contextual retrieval and LLM-powered generation — dramatically reducing developer search time.
+          </p>
+          <div class="fp-meta">
+            <div class="fp-meta-item">
+              <div class="fp-meta-label">Role</div>
+              <div class="fp-meta-value">Solo Developer</div>
+            </div>
+            <div class="fp-meta-item">
+              <div class="fp-meta-label">Type</div>
+              <div class="fp-meta-value">Personal Project</div>
+            </div>
+            <div class="fp-meta-item">
+              <div class="fp-meta-label">Domain</div>
+              <div class="fp-meta-value">Developer Tooling · GenAI</div>
+            </div>
+            <div class="fp-meta-item">
+              <div class="fp-meta-label">Pipeline</div>
+              <div class="fp-meta-value">Ingest → Embed → Retrieve → Generate</div>
+            </div>
+          </div>
+          <a href="https://github.com/sid12super/RAG-TechDocHelper" target="_blank" rel="noopener" class="fp-link">
+            View on GitHub
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+        <div class="fp-visual reveal">
+          <div class="fp-highlights-title">Key Results</div>
+          <div class="fp-highlight">
+            <div class="fp-highlight-number">10K+</div>
+            <div class="fp-highlight-text"><strong>Tokenized sentences</strong> ingested into a FAISS vector store for semantic similarity search</div>
+          </div>
+          <div class="fp-highlight">
+            <div class="fp-highlight-number">&lt;5s</div>
+            <div class="fp-highlight-text"><strong>Query response time</strong> — down from 10+ minutes of manual search through technical documentation</div>
+          </div>
+          <div class="fp-highlight">
+            <div class="fp-highlight-number">CI/CD</div>
+            <div class="fp-highlight-text"><strong>Automated pipeline</strong> via GitHub Actions for ingestion, testing, and deployment — ensuring code quality on every commit</div>
+          </div>
+          <div class="fp-tech-stack">
+            <div class="fp-tech-stack-title">Tech Stack</div>
+            <div class="fp-tech-tags">
+              <span class="fp-tech-tag">LangChain</span>
+              <span class="fp-tech-tag">OpenAI GPT-4</span>
+              <span class="fp-tech-tag">FAISS</span>
+              <span class="fp-tech-tag">Python</span>
+              <span class="fp-tech-tag">GitHub Actions</span>
+              <span class="fp-tech-tag">CI/CD</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 03: Genomic Sequence Analysis -->
+    <div class="featured-project" id="project-genomic">
+      <div class="featured-project-inner">
+        <div class="fp-info reveal">
+          <div class="fp-index">03 — Featured</div>
+          <h3 class="fp-title">Genomic Sequence<br/>Analysis</h3>
+          <div class="fp-subtitle">Deep Learning on AWS · Jun — Aug 2025</div>
+          <p class="fp-description">
+            A scalable genomic classification pipeline built on AWS infrastructure, designed to analyze over 100,000 genomic samples for promoter sequence identification. The project demonstrates end-to-end ML engineering — from distributed data preprocessing with Dask to GPU-accelerated model training on SageMaker.
+          </p>
+          <div class="fp-meta">
+            <div class="fp-meta-item">
+              <div class="fp-meta-label">Role</div>
+              <div class="fp-meta-value">ML Engineer</div>
+            </div>
+            <div class="fp-meta-item">
+              <div class="fp-meta-label">Type</div>
+              <div class="fp-meta-value">Personal Project</div>
+            </div>
+            <div class="fp-meta-item">
+              <div class="fp-meta-label">Domain</div>
+              <div class="fp-meta-value">Bioinformatics · Cloud ML</div>
+            </div>
+            <div class="fp-meta-item">
+              <div class="fp-meta-label">Scale</div>
+              <div class="fp-meta-value">100K+ genomic samples</div>
+            </div>
+          </div>
+          <a href="https://github.com/sid12super/GLP" target="_blank" rel="noopener" class="fp-link">
+            View on GitHub
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+        <div class="fp-visual reveal">
+          <div class="fp-highlights-title">Key Results</div>
+          <div class="fp-highlight">
+            <div class="fp-highlight-number">60%</div>
+            <div class="fp-highlight-text"><strong>Training time reduction</strong> by migrating TensorFlow CNN workflows to AWS SageMaker ml.g5.2xlarge GPU instances</div>
+          </div>
+          <div class="fp-highlight">
+            <div class="fp-highlight-number">100K+</div>
+            <div class="fp-highlight-text"><strong>Genomic samples processed</strong> through a scalable Dask-based parallel preprocessing workflow with S3 storage</div>
+          </div>
+          <div class="fp-highlight">
+            <div class="fp-highlight-number">↑</div>
+            <div class="fp-highlight-text"><strong>Generalization improved</strong> by combating overfitting with stratified partitioning, dropout layers, and early stopping callbacks</div>
+          </div>
+          <div class="fp-tech-stack">
+            <div class="fp-tech-stack-title">Tech Stack</div>
+            <div class="fp-tech-tags">
+              <span class="fp-tech-tag">TensorFlow</span>
+              <span class="fp-tech-tag">CNN</span>
+              <span class="fp-tech-tag">AWS SageMaker</span>
+              <span class="fp-tech-tag">Amazon S3</span>
+              <span class="fp-tech-tag">Dask</span>
+              <span class="fp-tech-tag">FASTA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 04: Diabetes Risk Assessment -->
+    <div class="featured-project" id="project-diabetes">
+      <div class="featured-project-inner">
+        <div class="fp-info reveal">
+          <div class="fp-index">04 — Featured</div>
+          <h3 class="fp-title">Diabetes Risk<br/>Assessment</h3>
+          <div class="fp-subtitle">Socio-Economic Predictive Modeling · Jan — Apr 2025</div>
+          <p class="fp-description">
+            A comprehensive machine learning study exploring whether non-clinical, socio-economic factors can predict Type II Diabetes risk. Using the 2023 CDC BRFSS dataset, the project benchmarks multiple classifiers and a custom deep neural network to demonstrate the predictive power of lifestyle variables.
+          </p>
+          <div class="fp-meta">
+            <div class="fp-meta-item">
+              <div class="fp-meta-label">Role</div>
+              <div class="fp-meta-value">Lead Data Scientist</div>
+            </div>
+            <div class="fp-meta-item">
+              <div class="fp-meta-label">Type</div>
+              <div class="fp-meta-value">Academic Research</div>
+            </div>
+            <div class="fp-meta-item">
+              <div class="fp-meta-label">Domain</div>
+              <div class="fp-meta-value">Healthcare · Public Health</div>
+            </div>
+            <div class="fp-meta-item">
+              <div class="fp-meta-label">Dataset</div>
+              <div class="fp-meta-value">CDC BRFSS 2023</div>
+            </div>
+          </div>
+          <a href="https://github.com/sid12super/BRFSS-Diabetes-Risk-Assessment" target="_blank" rel="noopener" class="fp-link">
+            View on GitHub
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+        </div>
+        <div class="fp-visual reveal">
+          <div class="fp-highlights-title">Key Results</div>
+          <div class="fp-highlight">
+            <div class="fp-highlight-number">0.57</div>
+            <div class="fp-highlight-text"><strong>Diabetic-class F1-score</strong> achieved by the Dense Neural Network — best among all benchmarked models</div>
+          </div>
+          <div class="fp-highlight">
+            <div class="fp-highlight-number">3+</div>
+            <div class="fp-highlight-text"><strong>Models benchmarked</strong> — Logistic Regression, Random Forest, XGBoost, and a custom TensorFlow/Keras DNN with Batch Normalization & Dropout</div>
+          </div>
+          <div class="fp-highlight">
+            <div class="fp-highlight-number">SMOTE</div>
+            <div class="fp-highlight-text"><strong>Class imbalance addressed</strong> with Synthetic Minority Over-sampling Technique on the full BRFSS dataset for fair evaluation</div>
+          </div>
+          <div class="fp-tech-stack">
+            <div class="fp-tech-stack-title">Tech Stack</div>
+            <div class="fp-tech-tags">
+              <span class="fp-tech-tag">TensorFlow</span>
+              <span class="fp-tech-tag">Keras</span>
+              <span class="fp-tech-tag">Scikit-learn</span>
+              <span class="fp-tech-tag">XGBoost</span>
+              <span class="fp-tech-tag">SMOTE</span>
+              <span class="fp-tech-tag">pandas</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALL PROJECTS — COMPACT LIST -->
   <section class="section" id="projects">
     <div class="section-header reveal">
-      <span class="section-number">03</span>
-      <h2 class="section-title">Projects</h2>
+      <span class="section-number">03.5</span>
+      <h2 class="section-title">All Projects</h2>
       <div class="section-line"></div>
     </div>
 
@@ -1440,7 +1991,7 @@
     animateRing();
 
     // Hover effect on interactive elements
-    document.querySelectorAll('a, button, .project-item, .skill-card, .stat').forEach(el => {
+    document.querySelectorAll('a, button, .project-item, .skill-card, .stat, .fp-tech-tag, .fp-link').forEach(el => {
       el.addEventListener('mouseenter', () => ring.classList.add('hover'));
       el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
     });
