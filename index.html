@@ -694,68 +694,183 @@
     /* ═══════════════════════════════════════════
        SKILLS
     ═══════════════════════════════════════════ */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 24px;
+    /* ═══════════════════════════════════════════
+       SKILLS — TIERED VISUALIZATION
+    ═══════════════════════════════════════════ */
+    .skills-section-intro {
+      font-size: 16px;
+      color: var(--text-secondary);
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 640px;
+      margin-bottom: 48px;
     }
 
-    .skill-card {
-      padding: 36px;
-      border: 1px solid var(--border);
-      background: var(--bg-secondary);
-      position: relative;
-      overflow: hidden;
-      transition: all 0.4s ease;
+    .skills-tier {
+      margin-bottom: 48px;
     }
 
-    .skill-card::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 3px;
-      background: var(--accent);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s ease;
+    .skills-tier:last-child {
+      margin-bottom: 0;
     }
 
-    .skill-card:hover {
-      border-color: var(--accent);
-      transform: translateY(-4px);
+    .tier-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
     }
 
-    .skill-card:hover::after {
-      transform: scaleX(1);
+    .tier-badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      flex-shrink: 0;
     }
 
-    .skill-card h4 {
-      font-family: var(--font-display);
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 16px;
+    .tier-badge.proficient {
+      border-color: var(--text-secondary);
+      color: var(--text-secondary);
     }
 
-    .skill-tags {
+    .tier-badge.familiar {
+      border-color: var(--text-muted);
+      color: var(--text-muted);
+    }
+
+    .tier-label {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    .tier-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .skills-tier-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 6px;
     }
 
-    .skill-tag {
+    .skill-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border: 1px solid var(--border);
+      background: var(--bg-secondary);
+      transition: all 0.3s ease;
+      cursor: default;
+      position: relative;
+    }
+
+    .skill-item:hover {
+      border-color: var(--accent);
+      background: var(--accent-dim);
+    }
+
+    .skill-item-name {
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: 12px;
       letter-spacing: 0.5px;
-      padding: 6px 12px;
+      color: var(--text-secondary);
+      transition: color 0.3s ease;
+    }
+
+    .skill-item:hover .skill-item-name {
+      color: var(--text-primary);
+    }
+
+    .skill-dots {
+      display: flex;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    .skill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--border);
+      transition: background 0.3s ease;
+    }
+
+    .skill-dot.filled {
+      background: var(--accent);
+    }
+
+    .skill-dot.half {
+      background: linear-gradient(90deg, var(--accent) 50%, var(--border) 50%);
+    }
+
+    .skill-item:hover .skill-dot.filled {
+      background: var(--highlight);
+    }
+
+    .skill-item:hover .skill-dot.half {
+      background: linear-gradient(90deg, var(--highlight) 50%, var(--border) 50%);
+    }
+
+    /* Skill project tags on hover */
+    .skill-projects {
+      display: none;
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
       background: var(--surface);
       border: 1px solid var(--border);
-      color: var(--text-secondary);
-      transition: all 0.3s ease;
+      padding: 8px 12px;
+      white-space: nowrap;
+      z-index: 50;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--accent);
+      letter-spacing: 0.5px;
+      pointer-events: none;
     }
 
-    .skill-card:hover .skill-tag {
-      border-color: var(--accent-dim);
-      color: var(--text-primary);
+    .skill-projects::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 5px solid transparent;
+      border-top-color: var(--border);
+    }
+
+    .skill-item:hover .skill-projects {
+      display: block;
+    }
+
+    /* Category labels within tiers */
+    .skill-category-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin: 20px 0 12px 0;
+    }
+
+    .skill-category-label:first-child {
+      margin-top: 0;
+    }
+
+    @media (max-width: 768px) {
+      .skill-projects { display: none !important; }
+      .skill-item { padding: 8px 12px; }
+      .skill-item-name { font-size: 11px; }
     }
 
     /* ═══════════════════════════════════════════
@@ -1340,6 +1455,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <div class="nav-status">
@@ -1934,71 +2050,112 @@
       <div class="section-line"></div>
     </div>
 
-    <div class="skills-grid">
-      <div class="skill-card reveal">
-        <h4>Languages & Data</h4>
-        <div class="skill-tags">
-          <span class="skill-tag">Python</span>
-          <span class="skill-tag">R</span>
-          <span class="skill-tag">SQL</span>
-          <span class="skill-tag">JavaScript</span>
-          <span class="skill-tag">HTML/CSS</span>
-        </div>
+    <p class="skills-section-intro reveal">Honest self-assessment. Dot scale reflects depth of experience, not just exposure. Hover for project context.</p>
+
+    <!-- TIER 1: CORE STRENGTHS (4.5 - 5) -->
+    <div class="skills-tier reveal">
+      <div class="tier-header">
+        <span class="tier-badge">Core</span>
+        <span class="tier-label">Can whiteboard it, ship it, debug it at 2am</span>
+        <div class="tier-line"></div>
       </div>
-      <div class="skill-card reveal">
-        <h4>ML & AI Frameworks</h4>
-        <div class="skill-tags">
-          <span class="skill-tag">TensorFlow</span>
-          <span class="skill-tag">Scikit-learn</span>
-          <span class="skill-tag">Keras</span>
-          <span class="skill-tag">Hugging Face</span>
-          <span class="skill-tag">LangChain</span>
-          <span class="skill-tag">DQN / RL</span>
-        </div>
+
+      <div class="skill-category-label">Languages</div>
+      <div class="skills-tier-grid">
+        <div class="skill-item"><span class="skill-item-name">Python</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span></div><div class="skill-projects">All Projects</div></div>
+        <div class="skill-item"><span class="skill-item-name">R</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span></div><div class="skill-projects">Energy Analysis</div></div>
+        <div class="skill-item"><span class="skill-item-name">SQL</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot half"></span></div><div class="skill-projects">Soccer DBMS</div></div>
       </div>
-      <div class="skill-card reveal">
-        <h4>Cloud & Infrastructure</h4>
-        <div class="skill-tags">
-          <span class="skill-tag">AWS SageMaker</span>
-          <span class="skill-tag">Amazon S3</span>
-          <span class="skill-tag">AWS Bedrock</span>
-          <span class="skill-tag">Azure</span>
-          <span class="skill-tag">GitHub Actions</span>
-        </div>
+
+      <div class="skill-category-label">ML & Data</div>
+      <div class="skills-tier-grid">
+        <div class="skill-item"><span class="skill-item-name">Scikit-learn</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span></div><div class="skill-projects">Diabetes · Hallucination Study</div></div>
+        <div class="skill-item"><span class="skill-item-name">XGBoost</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span></div><div class="skill-projects">Diabetes Risk Assessment</div></div>
+        <div class="skill-item"><span class="skill-item-name">pandas</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span></div><div class="skill-projects">All Projects</div></div>
+        <div class="skill-item"><span class="skill-item-name">NumPy</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span></div><div class="skill-projects">All Projects</div></div>
+        <div class="skill-item"><span class="skill-item-name">NLTK</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span></div><div class="skill-projects">Hallucination Study · NEXIS Lab</div></div>
+        <div class="skill-item"><span class="skill-item-name">Dask</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span></div><div class="skill-projects">Genomic Analysis</div></div>
       </div>
-      <div class="skill-card reveal">
-        <h4>NLP & GenAI</h4>
-        <div class="skill-tags">
-          <span class="skill-tag">BERT</span>
-          <span class="skill-tag">RAG</span>
-          <span class="skill-tag">FAISS</span>
-          <span class="skill-tag">ChromaDB</span>
-          <span class="skill-tag">Prompt Engineering</span>
-          <span class="skill-tag">RLHF</span>
-        </div>
+
+      <div class="skill-category-label">Visualization</div>
+      <div class="skills-tier-grid">
+        <div class="skill-item"><span class="skill-item-name">Matplotlib</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span></div><div class="skill-projects">Diabetes · Genomic · Energy</div></div>
+        <div class="skill-item"><span class="skill-item-name">seaborn</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span></div><div class="skill-projects">Diabetes · Energy Analysis</div></div>
+        <div class="skill-item"><span class="skill-item-name">Power BI</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span></div><div class="skill-projects">Soccer DBMS</div></div>
+        <div class="skill-item"><span class="skill-item-name">Streamlit</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span></div><div class="skill-projects">Hallucination Study · Betting Edge</div></div>
+        <div class="skill-item"><span class="skill-item-name">Tableau</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot half"></span></div><div class="skill-projects">NEXIS Lab</div></div>
       </div>
-      <div class="skill-card reveal">
-        <h4>Data & Visualization</h4>
-        <div class="skill-tags">
-          <span class="skill-tag">pandas</span>
-          <span class="skill-tag">NumPy</span>
-          <span class="skill-tag">Matplotlib</span>
-          <span class="skill-tag">seaborn</span>
-          <span class="skill-tag">Dask</span>
-          <span class="skill-tag">Tableau</span>
-          <span class="skill-tag">Power BI</span>
-        </div>
+
+      <div class="skill-category-label">Tools</div>
+      <div class="skills-tier-grid">
+        <div class="skill-item"><span class="skill-item-name">Git</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span></div><div class="skill-projects">All Projects</div></div>
+        <div class="skill-item"><span class="skill-item-name">Jupyter</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span></div><div class="skill-projects">All Projects</div></div>
+        <div class="skill-item"><span class="skill-item-name">VS Code</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span></div><div class="skill-projects">All Projects</div></div>
+        <div class="skill-item"><span class="skill-item-name">Prompt Engineering</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot half"></span></div><div class="skill-projects">Hallucination Study · Handshake AI</div></div>
+        <div class="skill-item"><span class="skill-item-name">MySQL</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot half"></span></div><div class="skill-projects">Soccer DBMS</div></div>
       </div>
-      <div class="skill-card reveal">
-        <h4>Databases & Tools</h4>
-        <div class="skill-tags">
-          <span class="skill-tag">MySQL</span>
-          <span class="skill-tag">MongoDB</span>
-          <span class="skill-tag">SQLite</span>
-          <span class="skill-tag">Streamlit</span>
-          <span class="skill-tag">REST APIs</span>
-          <span class="skill-tag">Git</span>
-        </div>
+    </div>
+
+    <!-- TIER 2: PROFICIENT (3.5 - 4) -->
+    <div class="skills-tier reveal">
+      <div class="tier-header">
+        <span class="tier-badge proficient">Proficient</span>
+        <span class="tier-label">Shipped projects with these, comfortable in production</span>
+        <div class="tier-line"></div>
+      </div>
+
+      <div class="skill-category-label">ML & AI Frameworks</div>
+      <div class="skills-tier-grid">
+        <div class="skill-item"><span class="skill-item-name">TensorFlow</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span></div><div class="skill-projects">Genomic · Diabetes</div></div>
+        <div class="skill-item"><span class="skill-item-name">Keras</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span></div><div class="skill-projects">Genomic · Diabetes</div></div>
+        <div class="skill-item"><span class="skill-item-name">Hugging Face</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span></div><div class="skill-projects">NEXIS Lab · Hallucination Study</div></div>
+        <div class="skill-item"><span class="skill-item-name">LangChain</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span></div><div class="skill-projects">RAG-TechDocHelper · Betting Edge</div></div>
+        <div class="skill-item"><span class="skill-item-name">DQN / RL</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot half"></span><span class="skill-dot"></span></div><div class="skill-projects">Betting Edge</div></div>
+      </div>
+
+      <div class="skill-category-label">NLP & GenAI</div>
+      <div class="skills-tier-grid">
+        <div class="skill-item"><span class="skill-item-name">RAG</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span></div><div class="skill-projects">RAG-TechDocHelper · Hallucination Study</div></div>
+        <div class="skill-item"><span class="skill-item-name">ChromaDB</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span></div><div class="skill-projects">Hallucination Study</div></div>
+        <div class="skill-item"><span class="skill-item-name">TextBlob</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span></div><div class="skill-projects">NEXIS Lab</div></div>
+        <div class="skill-item"><span class="skill-item-name">BERT</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot half"></span><span class="skill-dot"></span></div><div class="skill-projects">NEXIS Lab · Hallucination Study</div></div>
+        <div class="skill-item"><span class="skill-item-name">FAISS</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot half"></span><span class="skill-dot"></span></div><div class="skill-projects">RAG-TechDocHelper · Hallucination Study</div></div>
+      </div>
+
+      <div class="skill-category-label">Cloud & Infrastructure</div>
+      <div class="skills-tier-grid">
+        <div class="skill-item"><span class="skill-item-name">AWS SageMaker</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span></div><div class="skill-projects">Genomic Analysis</div></div>
+        <div class="skill-item"><span class="skill-item-name">Amazon S3</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span></div><div class="skill-projects">Genomic Analysis</div></div>
+        <div class="skill-item"><span class="skill-item-name">Azure</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span></div><div class="skill-projects">Soccer DBMS</div></div>
+        <div class="skill-item"><span class="skill-item-name">GitHub Actions</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot half"></span><span class="skill-dot"></span></div><div class="skill-projects">RAG-TechDocHelper</div></div>
+        <div class="skill-item"><span class="skill-item-name">AWS Bedrock</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot half"></span><span class="skill-dot"></span></div><div class="skill-projects">Hallucination Study</div></div>
+      </div>
+
+      <div class="skill-category-label">Databases & Tools</div>
+      <div class="skills-tier-grid">
+        <div class="skill-item"><span class="skill-item-name">MongoDB</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span></div></div>
+        <div class="skill-item"><span class="skill-item-name">SQLite</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span></div></div>
+        <div class="skill-item"><span class="skill-item-name">REST APIs</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot half"></span><span class="skill-dot"></span></div><div class="skill-projects">GenNext.Mortgage</div></div>
+        <div class="skill-item"><span class="skill-item-name">Databricks</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot half"></span><span class="skill-dot"></span></div></div>
+        <div class="skill-item"><span class="skill-item-name">RLHF</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span><span class="skill-dot"></span></div><div class="skill-projects">Handshake AI</div></div>
+      </div>
+    </div>
+
+    <!-- TIER 3: FAMILIAR (1 - 3) -->
+    <div class="skills-tier reveal">
+      <div class="tier-header">
+        <span class="tier-badge familiar">Familiar</span>
+        <span class="tier-label">Have used, would ramp up quickly</span>
+        <div class="tier-line"></div>
+      </div>
+
+      <div class="skills-tier-grid">
+        <div class="skill-item"><span class="skill-item-name">HTML/CSS</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span><span class="skill-dot"></span></div></div>
+        <div class="skill-item"><span class="skill-item-name">Google Apps Script</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span><span class="skill-dot"></span></div><div class="skill-projects">GenNext.Mortgage</div></div>
+        <div class="skill-item"><span class="skill-item-name">MS Access</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span><span class="skill-dot"></span></div></div>
+        <div class="skill-item"><span class="skill-item-name">JavaScript</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span><span class="skill-dot"></span><span class="skill-dot"></span></div></div>
+        <div class="skill-item"><span class="skill-item-name">Docker</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span><span class="skill-dot"></span><span class="skill-dot"></span></div></div>
+        <div class="skill-item"><span class="skill-item-name">C</span><div class="skill-dots"><span class="skill-dot filled"></span><span class="skill-dot"></span><span class="skill-dot"></span><span class="skill-dot"></span><span class="skill-dot"></span></div></div>
       </div>
     </div>
   </section>
@@ -2081,7 +2238,7 @@
     animateRing();
 
     // Hover effect on interactive elements
-    document.querySelectorAll('a, button, .project-item, .skill-card, .stat, .fp-tech-tag, .fp-link').forEach(el => {
+    document.querySelectorAll('a, button, .project-item, .skill-item, .fp-tech-tag, .fp-link').forEach(el => {
       el.addEventListener('mouseenter', () => ring.classList.add('hover'));
       el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
     });
